@@ -1,0 +1,72 @@
+@import url(https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap);
+
+* {
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0 auto;
+    padding: 0;
+    font-family: 'Nunito Sans';  
+    background-color: rgb(124, 190, 140);    
+    
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color:#fff;
+    min-width: 100%;
+}
+
+header{
+    text-align: center;
+}
+
+.notesContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+
+.noteBox{
+    display: flex;
+    flex-direction: column;
+    min-width: 220px;    
+    margin-top: 50px;
+    margin-right: 10px;
+}
+
+.addNote{
+    margin: auto;
+    cursor: pointer;
+}
+
+.icons{
+    margin-bottom: 10px;
+}
+.applyNote, .deleteNote{
+    float: right;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.titleNote{
+    padding: 15px;
+    background-color: rgb(255, 206, 116);
+    border: 0;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+
+.textareaNote{
+    box-sizing: border-box;
+    resize: none;
+    min-height: 250px;
+    background-color: rgb(255, 255, 168);
+    border: 0;
+    border-radius: 7px;
+    
+}
