@@ -1,31 +1,50 @@
-const addNote = document.querySelector('.addNote');
-//const titleNote = document.querySelector('.titleNote');
+﻿const addNote = document.querySelector('.addNote');
 //const textareaNote = document.querySelector('.textareaNote');
 const noteBox = document.querySelector('.noteBox');
 //const applyNote = document.querySelector('.applyNote');
-// const deleteNote = document.querySelector('.deleteNote');
+const deleteNote = document.querySelector('.deleteNote');
 const notesContainer = document.querySelector('.notesContainer');
 const addForm = document.querySelector('.add');
 
 
+let itemArray = localStorage.getItem('notes') ?
+JSON.parse(localStorage.getItem('notes')) : []
+
+
+localStorage.setItem('notes', JSON.stringify(itemArray))
+const data = JSON.parse(localStorage.getItem('notes'))
+
+  
 
 addNote.addEventListener('click', e => {
     e.preventDefault();
+  
+  const noteText = addForm.textNote.value;
 
-   const noteText = addForm.textNote.value;
-   
-   if(noteText.length){
-       console.log(noteText);
-      generateNotes(noteText);
-        addForm.reset();
-   }
+  itemArray.push(noteText);
+  localStorage.setItem('notes', JSON.stringify(itemArray));
+  noteText.value = '';
+  location.reload();
+//    if(noteText.length){
+//     generateNotes(noteText);     
+//         addForm.reset();
+//    }
 
 });
 
+notesContainer.addEventListener('click', e => {
 
+    if(e.target.classList.contains('deleteNote')){
+        e.target.parentElement.parentElement.remove();
+        removeFromLs(e.target.parentElement.parentElement);
+        console.log(e.target.parentElement.parentElement);
+    }
+
+});
+
+  
+data.forEach((viewData) => {
     
- const generateNotes = noteText => {
-       
     const noteHTML = `
     <div class="noteBox">
          <div class="icons">
@@ -33,17 +52,45 @@ addNote.addEventListener('click', e => {
              <img src="img/confirm.png" class="applyNote">
                    
          </div>
-     <textarea class="textareaNote" name="textNote" placeholder="Type here...">${noteText}</textarea>
+     <textarea class="textareaNote" name="textNote" placeholder="Type here...">${viewData}</textarea>
     </div>  
     `;
 
     notesContainer.innerHTML += noteHTML; 
- }
+ });
+
+
+function removeFromLs(task){
+    data.forEach((viewData, index) =>{
+        console.log(index, viewData);
+    if(task.textContent === index){
+        data.splice(index, 1);
+    }
+    });
+    localStorage.setItem('notes', JSON.stringify(itemArray));
+}
+
+  
 
 
 
 
+    
+//  const generateNotes = noteText => {
+       
+//     const noteHTML = `
+//     <div class="noteBox">
+//          <div class="icons">
+//              <img src="img/garbage.png" class="deleteNote">
+//              <img src="img/confirm.png" class="applyNote">
+                   
+//          </div>
+//      <textarea class="textareaNote" name="textNote" placeholder="Type here...">${noteText}</textarea>
+//     </div>  
+//     `;
 
+//     notesContainer.innerHTML += noteHTML; 
+//  }
 
 
 
